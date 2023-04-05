@@ -11,7 +11,7 @@ users_bp = Blueprint(
 @users_bp.route('/users/get-all',methods=['GET'])
 def get_user_all():
     user = supabase.table('users').select("*").execute()
-    print("AQUI: " + user)
+    print("AQUI", user)
     return jsonify(user)
 
 # retornar informações da tabela usuarios: nome, telefone, email, templates
