@@ -20,4 +20,4 @@ with app.app_context():
     app.register_blueprint(templates_bp)
     app.register_blueprint(payments_bp)
         
-app.run(debug=True, port=0.0.0.0:5000)
+app.run(debug=True)
