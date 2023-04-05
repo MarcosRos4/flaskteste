@@ -12,7 +12,7 @@ payments_bp = Blueprint(
 def create_payment():
     paymentinfo= request.get_json()
     try:
-        [payment] =supabase.table("payments").insert({"user_id":paymentinfo["user_id"]}).execute().data
+        [payment] =supabase.table("payments").insert({"user_id":paymentinfo["user_id"]}).execute()
     except KeyError:
         return "KeyError: missing variable definition"
     else:
@@ -31,7 +31,7 @@ def delete_payment_by_id(payment_id):
 @payments_bp.route('/payments/delete-by-user_id/<user_id>',methods=['DELETE'])
 def delete_payment_by_user_id(user_id):
     try:
-        payment = supabase.table('payments').delete().eq("user_id",user_id).execute().data
+        payment = supabase.table('payments').delete().eq("user_id",user_id).execute()
     except ValueError:
         return "ValueError: not enough values to unpack (expected 1, got 0) e.g. user_id not found"
     else:
@@ -44,7 +44,7 @@ def delete_payment_by_user_id(user_id):
 @payments_bp.route('/payments/get-by-payment_id/<payment_id>',methods=['GET'])
 def get_payment_by_payment_id(payment_id):
     try:
-        [payment] = supabase.table('payments').select("*").eq("payment_id",payment_id).execute().data
+        [payment] = supabase.table('payments').select("*").eq("payment_id",payment_id).execute()
     except ValueError:
         return "ValueError: not enough values to unpack (expected 1, got 0) e.g. payment_id not found"
     else:
@@ -54,7 +54,7 @@ def get_payment_by_payment_id(payment_id):
 @payments_bp.route('/payments/get-by-user_id/<user_id>',methods=['GET'])
 def get_payment_by_user_id(user_id):
     try:
-        payment = supabase.table('payments').select("*").eq("user_id",user_id).execute().data
+        payment = supabase.table('payments').select("*").eq("user_id",user_id).execute()
     except ValueError:
         return "ValueError: not enough values to unpack (expected 1, got 0) e.g. user_id not found"
     else:
@@ -63,6 +63,6 @@ def get_payment_by_user_id(user_id):
 # acessar todos os payments
 @payments_bp.route('/payments/get-all',methods=['GET'])
 def get_payment_all():
-    payment = supabase.table('payments').select("*").execute().data
+    payment = supabase.table('payments').select("*").execute()
     
     return jsonify(payment)
