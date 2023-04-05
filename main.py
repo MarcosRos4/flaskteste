@@ -1,12 +1,12 @@
 from flask import Flask
 
-# create flask aplication aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+# create flask aplication 
 
 app = Flask(__name__)
     #app.config.from_object('config.Config')
 @app.route("/")
 def default_route():
-    return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    return "Default test route"
 with app.app_context():
         # import parts of the aplication firebucks
     from users.usersroutes import users_bp
@@ -19,4 +19,4 @@ with app.app_context():
     app.register_blueprint(templates_bp)
     app.register_blueprint(payments_bp)
         
-app.run(port=5000,host='localhost',debug=True)
+app.run(debug=True, port=os.getenv("PORT", default=5000))
