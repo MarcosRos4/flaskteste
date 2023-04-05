@@ -6,7 +6,7 @@ tags:
   - flask
 ---
 
-# Python Flask Example
+# Shop Builder Api - Python
 
 This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app that serves a simple JSON response.
 
