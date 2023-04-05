@@ -1,4 +1,5 @@
 from flask import Flask
+import os
 
 # create flask aplication 
 
@@ -6,7 +7,7 @@ app = Flask(__name__)
     #app.config.from_object('config.Config')
 @app.route("/")
 def default_route():
-    return "Default test route"
+    return "Default Route"
 with app.app_context():
         # import parts of the aplication firebucks
     from users.usersroutes import users_bp
